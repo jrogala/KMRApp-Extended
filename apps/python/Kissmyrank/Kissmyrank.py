@@ -660,7 +660,7 @@ try:
         settingsNextLine(30)
         addSettingsTextInput("messages_spacing", "Messages Spacing:", onMessagesSpacingChange)
         settingsNextLine(30)
-        addSettingsBoxInput("show_ui", "Show UI:", onUISettingChange)
+        addSettingsBoxInput("messages_ui", "Show UI:", onUISettingChange)
         settingsNextLine(30)
         kissmyrank["settings"]["controls"]["sound_pack_select_label"] = {}
         kissmyrank["settings"]["controls"]["sound_pack_select_label"]["id"] = ac.addLabel(kissmyrank["settings"]["id"],
@@ -1313,9 +1313,9 @@ try:
         current = config["UI"]["show"]
         new = not current
         config["UI"]["show"] = new
-        ac.setText(kissmyrank["settings"]["controls"]["show_ui_input"]["id"], "Yes" if config["UI"]["show"] else "No")
+        ac.setText(kissmyrank["settings"]["controls"]["messages_ui_input"]["id"], "Yes" if config["UI"]["show"] else "No")
         configSave()
-        kissmyrank["settings"]["need_updating"].append("show_ui")
+        kissmyrank["settings"]["need_updating"].append("messages_ui")
 
 
     def positionAndSizeMessages():
