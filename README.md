@@ -1,7 +1,7 @@
 KissMyRank in-game spotter extended.
 
 # How to download
-- [HERE](https://github.com/jrogala/KMRApp-Extended/archive/refs/tags/v0.2.zip)
+- [HERE](https://github.com/jrogala/KMRApp-Extended/archive/refs/tags/v0.2a.zip)
 # How to install
 ## With Content Manager
 - Drop the KMRAPP-EXTENDED folder directly into Content Manager. 
