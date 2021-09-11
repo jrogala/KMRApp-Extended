@@ -1,5 +1,7 @@
 KissMyRank in-game spotter extended.
 
+# How to download
+- [HERE](norecursivelink.yet)
 # How to install
 ## With Content Manager
 - Drop the KMRAPP-EXTENDED folder directly into Content Manager. 
