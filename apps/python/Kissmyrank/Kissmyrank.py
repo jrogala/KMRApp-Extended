@@ -28,6 +28,10 @@ os.environ['PATH'] = os.environ['PATH'] + ";."
 import socket
 import winsound
 
+# Create DIR if not present
+if not os.path.isdir("apps/python/Kissmyrank/config"):
+    os.mkdir("apps/python/Kissmyrank/config")
+
 try:
     # globals
     config = {

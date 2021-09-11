@@ -9,6 +9,14 @@ KissMyRank in-game spotter extended.
 - Activate the apps in Content Manager
 ## Without Content Manager
 Drop app/ and content/ into Assetto Corsa root folder
+## In game
+- Write: 'kmr toggle_notifications' dans le chat Assetto (désactive les notifications chat)
+- Enable KMR Link (MANDATORY)
+- Enable KMR Messages or/and KMR Flags (If you want)
+- Position the Flag and Message panel and pin them
+- In KMR Settings, click on Show UI to make the panel transparent
+- You can close KMR Settings
+- Drive and don't forget to brake turn 1 
 
 # How to enable
 There is 4 applications
