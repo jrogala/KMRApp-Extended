@@ -583,15 +583,15 @@ try:
         ac.setVisible(kissmyrank["settings"]["id"], kissmyrank["settings"]["on"])
         ac.addOnAppActivatedListener(kissmyrank["settings"]["id"], onSettingsOn)
         ac.addOnAppDismissedListener(kissmyrank["settings"]["id"], onSettingsOff)
-        kissmyrank["settings"]["controls"]["image_pack_select_label"] = {}
-        kissmyrank["settings"]["controls"]["image_pack_select_label"]["id"] = ac.addLabel(kissmyrank["settings"]["id"],
-                                                                                          "Image Pack:")
-        ac.setPosition(kissmyrank["settings"]["controls"]["image_pack_select_label"]["id"], 3,
-                       kissmyrank["settings"]["cursor"])
-        settingsNextLine()
-        ac.setSize(kissmyrank["settings"]["controls"]["image_pack_select_label"]["id"], kissmyrank["settings"]["width"],
-                   30)
-        kissmyrank["settings"]["controls"]["image_packs"] = {}
+        # kissmyrank["settings"]["controls"]["image_pack_select_label"] = {}
+        # kissmyrank["settings"]["controls"]["image_pack_select_label"]["id"] = ac.addLabel(kissmyrank["settings"]["id"],
+        #                                                                                   "Image Pack:")
+        # ac.setPosition(kissmyrank["settings"]["controls"]["image_pack_select_label"]["id"], 3,
+        #                kissmyrank["settings"]["cursor"])
+        # settingsNextLine()
+        # ac.setSize(kissmyrank["settings"]["controls"]["image_pack_select_label"]["id"], kissmyrank["settings"]["width"],
+        #            30)
+        # kissmyrank["settings"]["controls"]["image_packs"] = {}
         # REMOVED IMAGE PACK
         # try:
         #     # noinspection PyTypeChecker
@@ -1315,7 +1315,7 @@ try:
         config["UI"]["show"] = new
         ac.setText(kissmyrank["settings"]["controls"]["show_ui_input"]["id"], "Yes" if config["UI"]["show"] else "No")
         configSave()
-        kissmyrank["settings"]["need_updating"].append("UI_Settings")
+        kissmyrank["settings"]["need_updating"].append("show_ui")
 
 
     def positionAndSizeMessages():
