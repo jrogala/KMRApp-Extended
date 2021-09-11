@@ -1,0 +1,158 @@
+Kissmyrank In-Game Spotter App for Assetto Corsa
+---------------------------------------------
+Author: Brioche, Jimmy Rogala
+License: No warranty. Do whatever you like :).
+Disclaimer: By using this app, you accept that your in-game nickname, IP Address and Steam GUID might be used and stored to provide you the service.
+---------------------------------------------
+Download: https://www.dropbox.com/s/aj01yjn6yl1vc4j/Kissmyrank_Spotter_App.zip?dl=0
+---------------------------------------------
+Install:
+Extract the package in the Assetto Corsa folder.
+Restart Assetto Corsa and enable the app under the Assetto Corsa General Options.
+---------------------------------------------
+Requirements:
+The app will work with Kissmyrank Servers with version 1.6a and above.
+---------------------------------------------
+How to use:
+The app is made of 4 sub apps.
+---------------------------------------------
+Kissmyrank Link
+This App is invisible and it is used to connect to the Server.
+If you want to receive the Kissmyrank events this app needs to be enabled.
+---------------------------------------------
+Kissmyrank Flags
+This app shows visual indicators for every event that has been mapped (e.g. drive-through flags etc.).
+---------------------------------------------
+Kissmyrank Messages
+This app shows Event messages in text form.
+---------------------------------------------
+Kissmyrank Settings
+This app allows you to to configure the other apps.
+---------------------------------------------
+Tips:
+For a better experience you can disable the incoming chat messages with the "kmr toggle_notifications" chat command.
+Your preference will be saved for the next time you join that server.
+---------------------------------------------
+Replacing images:
+You can create new image packs just by cloning the images/default folder under a different name and then replace each file with a different one.
+If you don't want to see a flag/icon you can replace it with an empty image.
+---------------------------------------------
+Replacing sounds:
+You can create new sounds packs just by cloning the sounds/default folder under a different name and then replace each file with a different one.
+If you don't want to hear sounds you can disable them by selecting mute in the Kissmyrank Settings app.
+---------------------------------------------
+Advanced usage:
+For those that are brave enough to mess with python you can edit the Kissmyrank.py file and change the behavior of the app for every event.
+---------------------------------------------
+Flags:
+To Define Flags: edit the py file and add to the flags controls:
+   "flag_id": {
+   "path": "filename",
+   "slot": slot#
+   },
+---------------------------------------------
+Example:
+   "vsc": {
+   "path": "vsc.png",
+   "slot": 0
+   },
+---------------------------------------------
+where vsc.png is the file in the image pack folder (need to be squared transparent PNG).
+---------------------------------------------
+Slots are like this
+---------------------------------------------
+Horizontal Layout
+0|1|2
+---------------------------------------------
+Vertical Layout
+0
+1
+2
+---------------------------------------------
+0= permanent flags like VSC (will not disappear)
+1= temporary flags like penalties and damage (will auto disappear after the amount of seconds you set)
+2 = permanent flags like Drive-Through (will not disappear)
+---------------------------------------------
+Event Map:
+The other important part is where you read "event_map". This is where you bind events from Kissmyrank Server Plugin\Language\en.json to flags and text:
+It goes like this:
+Code:
+   "id": [flags [flag1, flag2], sound, shows [show_flag1, show_flag2, do_not_hide_slot_0, do_not_hide_slot_1], text slot, seconds]
+---------------------------------------------
+Example:
+In en.json you can find this line:
+   "money_penalty": "Penalty%s: %s %s. You now have %s.",
+---------------------------------------------
+If you add this:
+   "money_penalty": [["penalty"], "notify.wav", [1], -1, 10],
+---------------------------------------------
+You're telling the app:
+1) to show the "penalty" flag when the money penalty event occurs since flags is ["penalty"] and shows is [1]
+2) play the "notify.wav" sound
+3) show text in temporary slot -1 (see below) for 10 seconds
+---------------------------------------------
+Text slots are like this:
+0 -> first line (for VSC and formation lap, text will not disappear on its own)
+1 -> second line (for DT and perma-penalty, text will not disappear on its own)
+-1 -> auto-choose first available temporary message line (will disappear after the amount of seconds set)
+---------------------------------------------
+Shows (third arguments) work like this
+If flags are two, for example [flag1, flag2], shows need to be at least two, for example [1,0]. This would show the first flag and hide the second (only perma-slot flags can be hidden).
+You can optionally add two more shows like [1,0, 1,0]. The second two .. 1,0] are for the permanent text slots.
+They answer to the question "Do you want to hide the text in the permanent slot 0?" and "Do you want to hide the text in the permanent slot 1?".
+1,0 is equivalent to answer "No, don't hide the text in slot 0" and "Yes, hide the text in slot 1".
+Text shows do not determine where the text goes. It's always text_slot that determines where the text goes.
+---------------------------------------------
+For example:
+"virtual_safety_car_ended": [["vsc1"], "notify.wav", [0, 0, 1], -1, 10],
+Would display the Virtual Safety Car Ended text in slot -1 for 10 seconds.
+At the same time it would hide the text in slot 0 but not the text in slot 1.
+---------------------------------------------
+Event Sub-mapping:
+Sometimes you want to show different signals for the same event (for example speed limits based on the actual speed limit).
+To do this you need to use the "event_submap" key.
+Example:
+In en.json you can find this line:
+   "virtual_safety_car_deployed": "Virtual Safety Car deployed for %s! Speed Limit: %s. No overtakes!",
+Notice that it has two occurrences of %s the second one is for speed.
+---------------------------------------------
+By setting a sub-mapping entry like:
+   "virtual_safety_car_deployed": [2]
+---------------------------------------------
+You're going to tell the app fork this event into various sub-events depending on the speed that the plugin sends (if the limit is set to "120km/h" the event will be mapped to "virtual_safety_car_deployed_120km/h".
+Example:
+    "virtual_safety_car_deployed_80km/h": [["vsc", "speed_80"], "notify.wav", [1, 1, 1], 0],
+    "virtual_safety_car_deployed_100km/h": [["vsc", "speed_100"], "notify.wav", [1, 1, 1], 0],
+    "virtual_safety_car_deployed_120km/h": [["vsc", "speed_120"], "notify.wav", [1, 1, 1], 0],
+    "virtual_safety_car_deployed_150km/h": [["vsc", "speed_150"], "notify.wav", [1, 1, 1], 0],
+---------------------------------------------
+Submap can also take multiple arguments.
+For example:
+   "virtual_safety_car_deployed": [1, 2]
+---------------------------------------------
+Would result in
+   "virtual_safety_car_deployed_60s_80km/h"
+if the safety car is deployed for 60s with a limit of 80km/h or
+   "virtual_safety_car_deployed_120s_80km/h"
+if the safety car is deployed for 120s with a limit of 80km/h.
+---------------------------------------------
+Troubleshooting
+If the app doesn't start you can try to delete config\config.json.
+If the issue persists, please send me the py log found under My Documents\Assetto Corsa (over Race Department or the Assetto Corsa Forum).
+---------------------------------------------
+Credits:
+I would like to thank Joshuax VGOS for his help with testing the app.
+---------------------------------------------
+Help wanted:
+The default image pack is just the beginning. Everyone is welcome to provide new image and sounds packs.
+---------------------------------------------
+Download: https://www.dropbox.com/s/aj01yjn6yl1vc4j/Kissmyrank_Spotter_App.zip?dl=0
+---------------------------------------------
+Changelog:
+v0.1 Initial release of the app.
+v0.1a Fixed: perma-text not disappearing (e.g when Virtual Safety Car Ends or Drive-Through is cleared etc.). Added: a bit of default spacing between flags (it will only apply if you clear your app config.json, otherwise your settings will be retained).
+v0.1b New: app icons for the game bar. Added: event mapping and flag for the new "do not park near the track" warning. Improved: support for auto IP detection when the server is not able to provide one. Fixed: binding errors appearing in the Python log. Improved: other minor improvements and fixes.
+v0.1c New: added settings for the Messages App (Width, Font Size, Line Height, Spacing). Improved: the app will remember the status of the various sub-apps (e.g. if you deactivate Flags or Messages, they won't appear the next time you start Assetto Corsa).
+
+Have fun,
+Brioche
