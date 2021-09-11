@@ -1,7 +1,7 @@
 ################################
 # Kissmyrank In-Game Spotter App for Assetto Corsa
-# Author: Brioche
-# Version: 0.1c
+# Author: Brioche, Jimmy Rogala
+# Version: 0.2a
 # License: No warranty. Do whatever you like (:.
 ################################
 
