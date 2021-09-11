@@ -484,7 +484,7 @@ try:
     t2 = """def onImagePackSelect_%s(*args):
             global config, kissmyrank
             config["image_pack"] = "%s"
-            imagePackHighlightUpdate()
+            # imagePackHighlightUpdate()
             configSave()"""
 
     kissmyrank["image_packs"] = []
@@ -592,29 +592,29 @@ try:
         ac.setSize(kissmyrank["settings"]["controls"]["image_pack_select_label"]["id"], kissmyrank["settings"]["width"],
                    30)
         kissmyrank["settings"]["controls"]["image_packs"] = {}
-        REMOVED IMAGE PACK
-        try:
-            # noinspection PyTypeChecker
-            image_packs = kissmyrank["image_packs"]
-            for image_pack in image_packs:
-                kissmyrank["settings"]["controls"]["image_packs"][image_pack] = {}
-                kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"] = ac.addButton(
-                    kissmyrank["settings"]["id"], image_pack)
-                ac.setPosition(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"],
-                               3, kissmyrank["settings"]["cursor"])
-                settingsNextLine()
-                ac.setSize(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"],
-                           kissmyrank["settings"]["width"] - 6,
-                           24)
-                ac.drawBorder(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"], 0)
-                ac.setVisible(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"], 1)
-                imagePackHighlight(image_pack)
-                # noinspection PyUnresolvedReferences
-                ac.addOnClickedListener(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"],
-                                        eval("onImagePackSelect_" + image_pack))
-        except:
-            pass
-        settingsNextLine(6)
+        # REMOVED IMAGE PACK
+        # try:
+        #     # noinspection PyTypeChecker
+        #     image_packs = kissmyrank["image_packs"]
+        #     for image_pack in image_packs:
+        #         kissmyrank["settings"]["controls"]["image_packs"][image_pack] = {}
+        #         kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"] = ac.addButton(
+        #             kissmyrank["settings"]["id"], image_pack)
+        #         ac.setPosition(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"],
+        #                        3, kissmyrank["settings"]["cursor"])
+        #         settingsNextLine()
+        #         ac.setSize(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"],
+        #                    kissmyrank["settings"]["width"] - 6,
+        #                    24)
+        #         ac.drawBorder(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"], 0)
+        #         ac.setVisible(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"], 1)
+        #         imagePackHighlight(image_pack)
+        #         # noinspection PyUnresolvedReferences
+        #         ac.addOnClickedListener(kissmyrank["settings"]["controls"]["image_packs"][image_pack]["id"],
+        #                                 eval("onImagePackSelect_" + image_pack))
+        # except:
+        #     pass
+        # settingsNextLine(6)
         kissmyrank["settings"]["controls"]["flags_layout_select_label"] = {}
         kissmyrank["settings"]["controls"]["flags_layout_select_label"]["id"] = ac.addLabel(
             kissmyrank["settings"]["id"],
