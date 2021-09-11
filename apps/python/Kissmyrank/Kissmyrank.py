@@ -34,7 +34,7 @@ try:
         "image_base_path": "apps/python/Kissmyrank/images/",
         "image_pack": "default",
         "sound_base_path": "apps/python/Kissmyrank/sounds/",
-        "sound_pack": "sncf",
+        "sound_pack": "default",
         "link": {
             "on": 1
         },
