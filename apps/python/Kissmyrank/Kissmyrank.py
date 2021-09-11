@@ -20,9 +20,9 @@ import traceback
 import encodings
 
 if platform.architecture()[0] == "64bit":
-    sys.path.insert(len(sys.path), 'apps/python/KMRApp-Extended/stdlib64')
+    sys.path.insert(len(sys.path), 'apps/python/Kissmyrank/stdlib64')
 else:
-    sys.path.insert(len(sys.path), 'apps/python/KMRApp-Extended/stdlib')
+    sys.path.insert(len(sys.path), 'apps/python/Kissmyrank/stdlib')
 os.environ['PATH'] = os.environ['PATH'] + ";."
 
 import socket
@@ -31,9 +31,9 @@ import winsound
 try:
     # globals
     config = {
-        "image_base_path": "apps/python/KMRApp-Extended/images/",
+        "image_base_path": "apps/python/Kissmyrank/images/",
         "image_pack": "default",
-        "sound_base_path": "apps/python/KMRApp-Extended/sounds/",
+        "sound_base_path": "apps/python/Kissmyrank/sounds/",
         "sound_pack": "sncf",
         "link": {
             "on": 1
@@ -55,7 +55,7 @@ try:
         "UI": {
             "show": True
         },
-        "config_file_path": "apps/python/KMRApp-Extended/config/config.json",
+        "config_file_path": "apps/python/Kissmyrank/config/config.json",
     }
 
 
