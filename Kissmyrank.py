@@ -356,7 +356,7 @@ try:
                 ["formation_lap", "speed_80", "speed_100", "speed_120", "speed_150", "speed_vsc"], "notify.wav",
                 [1, 0, 0, 0, 0, 0], -1, 8],
             # "first_blood_broadcast": "Penalty: %s %s for being involved in the first collisions of the race.",
-            # "automatic_race_restart_broadcast": [["red_flag"], "notify.wav", [1], -1, 6],
+            "automatic_race_restart_broadcast": [["red_flag"], "notify.wav", [1], -1, 6],
             # "driver_vote_broadcast": "%s voted to change the track to %s (%d of %d required).",
             # "track_change_vote_ends_in_30s": "Track Change Vote will end in 30 seconds. Cast your vote with the %s command before it's too late!",
             # "track_vote_result_broadcast": "%s has won the vote (%d out of %d).",
