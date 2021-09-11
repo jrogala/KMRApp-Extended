@@ -146,13 +146,14 @@ I would like to thank Joshuax VGOS for his help with testing the app.
 Help wanted:
 The default image pack is just the beginning. Everyone is welcome to provide new image and sounds packs.
 ---------------------------------------------
-Download: https://www.dropbox.com/s/aj01yjn6yl1vc4j/Kissmyrank_Spotter_App.zip?dl=0
+Download: https://github.com/jrogala/KMRApp-Extended
 ---------------------------------------------
 Changelog:
 v0.1 Initial release of the app.
 v0.1a Fixed: perma-text not disappearing (e.g when Virtual Safety Car Ends or Drive-Through is cleared etc.). Added: a bit of default spacing between flags (it will only apply if you clear your app config.json, otherwise your settings will be retained).
 v0.1b New: app icons for the game bar. Added: event mapping and flag for the new "do not park near the track" warning. Improved: support for auto IP detection when the server is not able to provide one. Fixed: binding errors appearing in the Python log. Improved: other minor improvements and fixes.
 v0.1c New: added settings for the Messages App (Width, Font Size, Line Height, Spacing). Improved: the app will remember the status of the various sub-apps (e.g. if you deactivate Flags or Messages, they won't appear the next time you start Assetto Corsa).
+v0.2 New: Settings to toggle transparent UI, added custom sounds, added some flags.
 
 Have fun,
 Brioche
