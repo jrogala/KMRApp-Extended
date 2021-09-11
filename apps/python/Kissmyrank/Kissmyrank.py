@@ -239,7 +239,7 @@ try:
         "settings": {
             "on": 0,
             "width": 300,
-            "height": 900,
+            "height": 650,
             "controls": {},
             "cursor": 33,
             "need_updating": []
