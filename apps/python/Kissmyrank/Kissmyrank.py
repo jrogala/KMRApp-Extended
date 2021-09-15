@@ -40,7 +40,7 @@ try:
         "sound_base_path": "apps/python/Kissmyrank/sounds/",
         "sound_pack": "default",
         "link": {
-            "on": 1
+            "on": True
         },
         "flags": {
             "on": 1,
@@ -517,68 +517,6 @@ try:
     def acMain(ac_version):
         global kissmyrank, config
 
-        ac.log("Kissmyrank: setting up Kissmyrank Link App.")
-        kissmyrank["link"]["id"] = ac.newApp("Kissmyrank Link")
-        ac.setTitle(kissmyrank["link"]["id"], "")
-        ac.setIconPosition(kissmyrank["link"]["id"], 0, -6000)
-        ac.setSize(kissmyrank["link"]["id"], kissmyrank["link"]["width"], kissmyrank["link"]["height"])
-        ac.drawBorder(kissmyrank["link"]["id"], 0)
-        ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
-        ac.setBackgroundOpacity(kissmyrank["link"]["id"], 0)
-        ac.setVisible(kissmyrank["link"]["id"], kissmyrank["link"]["on"])
-        ac.addOnAppActivatedListener(kissmyrank["link"]["id"], onLinkOn)
-        ac.addOnAppDismissedListener(kissmyrank["link"]["id"], onLinkOff)
-        # ac.addRenderCallback(ac_kissmyrank["link"]["id"], onRender)
-        ac.addOnChatMessageListener(kissmyrank["link"]["id"], onMessage)
-
-        ac.log("Kissmyrank: setting up Kissmyrank Flags App.")
-        kissmyrank["flags"]["id"] = ac.newApp("Kissmyrank Flags")
-        ac.setTitle(kissmyrank["flags"]["id"], "Flags")
-        ac.drawBorder(kissmyrank["flags"]["id"], 1)
-        ac.setIconPosition(kissmyrank["flags"]["id"], 0, -6000)
-        updateFlagsSize()
-        ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
-        ac.setBackgroundOpacity(kissmyrank["flags"]["id"], 0)
-        ac.setVisible(kissmyrank["flags"]["id"], kissmyrank["flags"]["on"])
-        ac.addOnAppActivatedListener(kissmyrank["flags"]["id"], onFlagsOn)
-        ac.addOnAppDismissedListener(kissmyrank["flags"]["id"], onFlagsOff)
-        # add flag controls
-        for id_, flag in kissmyrank["flags"]["controls"].items():
-            kissmyrank["flags"]["controls"][id_]["id"] = ac.addButton(kissmyrank["flags"]["id"], "")
-            positionFlag(id_)
-            ac.drawBorder(kissmyrank["flags"]["controls"][id_]["id"], 0)
-            ac.setVisible(kissmyrank["flags"]["controls"][id_]["id"], 0)
-            ac.setBackgroundOpacity(kissmyrank["flags"]["controls"][id_]["id"], 0)
-            ac.setBackgroundTexture(kissmyrank["flags"]["controls"][id_]["id"],
-                                    config["image_base_path"] + config["image_pack"] + "/" +
-                                    kissmyrank["flags"]["controls"][id_]["path"])
-            ac.setVisible(kissmyrank["flags"]["controls"][id_]["id"], 0)
-
-        ac.log("Kissmyrank: setting up Kissmyrank Messages App.")
-        kissmyrank["messages"]["id"] = ac.newApp("Kissmyrank Messages")
-        ac.setTitle(kissmyrank["messages"]["id"], "Messages")
-        ac.drawBorder(kissmyrank["messages"]["id"], 1)
-        ac.setIconPosition(kissmyrank["messages"]["id"], 0, -6000)
-        updateMessagesSize()
-        ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
-        ac.setBackgroundOpacity(kissmyrank["messages"]["id"], 0)
-        ac.setVisible(kissmyrank["messages"]["id"], kissmyrank["messages"]["on"])
-        ac.addOnAppActivatedListener(kissmyrank["messages"]["id"], onMessagesOn)
-        ac.addOnAppDismissedListener(kissmyrank["messages"]["id"], onMessagesOff)
-        # add text control
-        for i in range(0, kissmyrank["messages"]["lines"]):
-            kissmyrank["messages"]["controls"]["text_" + str(i)] = {}
-            kissmyrank["messages"]["controls"]["text_" + str(i)]["id"] = ac.addLabel(kissmyrank["messages"]["id"], " ")
-            ac.setCustomFont(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], kissmyrank["messages"]["font"],
-                             0,
-                             0)
-            positionAndSizeMessage(i)
-            ac.setFontColor(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 1, 1, 1, 1)
-            ac.setFontAlignment(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], "center")
-            ac.setBackgroundColor(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 0.3, 0.3, 0.3)
-            ac.setBackgroundOpacity(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 0.6)
-            ac.setVisible(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 0)
-
         ac.log("Kissmyrank: setting up Kissmyrank Settings App.")
         kissmyrank["settings"]["id"] = ac.newApp("Kissmyrank Settings")
         ac.setTitle(kissmyrank["settings"]["id"], "Kissmyrank Settings")
@@ -650,21 +588,23 @@ try:
         except:
             pass
         settingsNextLine(6)
-        addSettingsTextInput("flags_width", "Flags Width:", onFlagsWidthChange)
-        settingsNextLine(30)
-        addSettingsTextInput("flags_height", "Flags Height:", onFlagsHeightChange)
-        settingsNextLine(30)
-        addSettingsTextInput("flags_spacing", "Flags Spacing:", onFlagsSpacingChange)
-        settingsNextLine(30)
-        addSettingsTextInput("messages_width", "Messages Width:", onMessagesWidthChange)
-        settingsNextLine(30)
-        addSettingsTextInput("messages_font_size", "Messages Font Size:", onMessagesFontSizeChange)
-        settingsNextLine(30)
-        addSettingsTextInput("messages_line_height", "Messages Line Height:", onMessagesLineHeightChange)
-        settingsNextLine(30)
-        addSettingsTextInput("messages_spacing", "Messages Spacing:", onMessagesSpacingChange)
-        settingsNextLine(30)
+        # addSettingsTextInput("flags_width", "Flags Width:", onFlagsWidthChange)
+        # settingsNextLine(30)
+        # addSettingsTextInput("flags_height", "Flags Height:", onFlagsHeightChange)
+        # settingsNextLine(30)
+        # addSettingsTextInput("flags_spacing", "Flags Spacing:", onFlagsSpacingChange)
+        # settingsNextLine(30)
+        # addSettingsTextInput("messages_width", "Messages Width:", onMessagesWidthChange)
+        # settingsNextLine(30)
+        # addSettingsTextInput("messages_font_size", "Messages Font Size:", onMessagesFontSizeChange)
+        # settingsNextLine(30)
+        # addSettingsTextInput("messages_line_height", "Messages Line Height:", onMessagesLineHeightChange)
+        # settingsNextLine(30)
+        # addSettingsTextInput("messages_spacing", "Messages Spacing:", onMessagesSpacingChange)
+        # settingsNextLine(30)
         addSettingsBoxInput("messages_ui", "Show UI:", onUISettingChange)
+        settingsNextLine(30)
+        addSettingsBoxInput("connect_KMR", "Connect KMR:", onKMRConnectChange)
         settingsNextLine(30)
         kissmyrank["settings"]["controls"]["sound_pack_select_label"] = {}
         kissmyrank["settings"]["controls"]["sound_pack_select_label"]["id"] = ac.addLabel(kissmyrank["settings"]["id"],
@@ -696,6 +636,71 @@ try:
                                         eval("onSoundPackSelect_" + sound_pack))
         except:
             pass
+
+        # ac.log("Kissmyrank: setting up Kissmyrank Link App.")
+        # kissmyrank["link"]["id"] = ac.newApp("Kissmyrank Link")
+        # ac.setTitle(kissmyrank["link"]["id"], "")
+        # ac.setIconPosition(kissmyrank["link"]["id"], 0, -6000)
+        # ac.setSize(kissmyrank["link"]["id"], kissmyrank["link"]["width"], kissmyrank["link"]["height"])
+        # ac.drawBorder(kissmyrank["link"]["id"], 0)
+        # ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
+        # ac.setBackgroundOpacity(kissmyrank["link"]["id"], 0)
+        # ac.setVisible(kissmyrank["link"]["id"], kissmyrank["link"]["on"])
+        # ac.addOnAppActivatedListener(kissmyrank["link"]["id"], onLinkOn)
+        # ac.addOnAppDismissedListener(kissmyrank["link"]["id"], onLinkOff)
+        # # ac.addRenderCallback(ac_kissmyrank["link"]["id"], onRender)
+        # ac.addOnChatMessageListener(kissmyrank["link"]["id"], onMessage)
+
+        ac.log("Kissmyrank: setting up Kissmyrank Flags App.")
+        kissmyrank["flags"]["id"] = ac.newApp("Kissmyrank Flags")
+        ac.setTitle(kissmyrank["flags"]["id"], "Flags")
+        ac.drawBorder(kissmyrank["flags"]["id"], 1)
+        ac.setIconPosition(kissmyrank["flags"]["id"], 0, -6000)
+        updateFlagsSize()
+        ac.setBackgroundColor(kissmyrank["flags"]["id"], 0, 0, 0)
+        ac.setBackgroundOpacity(kissmyrank["flags"]["id"], 0)
+        ac.setVisible(kissmyrank["flags"]["id"], kissmyrank["flags"]["on"])
+        ac.addOnAppActivatedListener(kissmyrank["flags"]["id"], onFlagsOn)
+        ac.addOnAppDismissedListener(kissmyrank["flags"]["id"], onFlagsOff)
+        # add flag controls
+        for id_, flag in kissmyrank["flags"]["controls"].items():
+            kissmyrank["flags"]["controls"][id_]["id"] = ac.addButton(kissmyrank["flags"]["id"], "")
+            positionFlag(id_)
+            ac.drawBorder(kissmyrank["flags"]["controls"][id_]["id"], 0)
+            ac.setVisible(kissmyrank["flags"]["controls"][id_]["id"], 0)
+            ac.setBackgroundOpacity(kissmyrank["flags"]["controls"][id_]["id"], 0)
+            ac.setBackgroundTexture(kissmyrank["flags"]["controls"][id_]["id"],
+                                    config["image_base_path"] + config["image_pack"] + "/" +
+                                    kissmyrank["flags"]["controls"][id_]["path"])
+            ac.setVisible(kissmyrank["flags"]["controls"][id_]["id"], 0)
+
+        ac.log("Kissmyrank: setting up Kissmyrank Messages App.")
+        kissmyrank["messages"]["id"] = ac.newApp("Kissmyrank Messages")
+        ac.setTitle(kissmyrank["messages"]["id"], "Messages")
+        ac.drawBorder(kissmyrank["messages"]["id"], 1)
+        ac.setIconPosition(kissmyrank["messages"]["id"], 0, -6000)
+        updateMessagesSize()
+        ac.setBackgroundColor(kissmyrank["messages"]["id"], 0, 0, 0)
+        ac.setBackgroundOpacity(kissmyrank["messages"]["id"], 0)
+        ac.setVisible(kissmyrank["messages"]["id"], kissmyrank["messages"]["on"])
+        ac.addOnAppActivatedListener(kissmyrank["messages"]["id"], onMessagesOn)
+        ac.addOnAppDismissedListener(kissmyrank["messages"]["id"], onMessagesOff)
+        # add text control
+        for i in range(0, kissmyrank["messages"]["lines"]):
+            kissmyrank["messages"]["controls"]["text_" + str(i)] = {}
+            kissmyrank["messages"]["controls"]["text_" + str(i)]["id"] = ac.addLabel(kissmyrank["messages"]["id"], " ")
+            ac.setCustomFont(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], kissmyrank["messages"]["font"],
+                             0,
+                             0)
+            positionAndSizeMessage(i)
+            ac.setFontColor(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 1, 1, 1, 1)
+            ac.setFontAlignment(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], "center")
+            ac.setBackgroundColor(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 0.3, 0.3, 0.3)
+            ac.setBackgroundOpacity(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 0.6)
+            ac.setVisible(kissmyrank["messages"]["controls"]["text_" + str(i)]["id"], 0)
+        if config["link"]["on"]:
+            time.sleep(5)
+            onLinkOn()
         ac.log("Kissmyrank: app initialization complete.")
         return "Kissmyrank"
 
@@ -707,10 +712,10 @@ try:
             kissmyrank["timers"][i] += deltaT
         # if the app was moved we set the background
         if config["UI"]["show"] == False:
-            ac.setTitle(kissmyrank["link"]["id"], "")
-            ac.drawBorder(kissmyrank["link"]["id"], 0)
-            ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
-            ac.setBackgroundOpacity(kissmyrank["link"]["id"], 0)
+            # ac.setTitle(kissmyrank["link"]["id"], "")
+            # ac.drawBorder(kissmyrank["link"]["id"], 0)
+            # ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
+            # ac.setBackgroundOpacity(kissmyrank["link"]["id"], 0)
             
             ac.setTitle(kissmyrank["flags"]["id"], "")
             ac.drawBorder(kissmyrank["flags"]["id"], 0)
@@ -722,10 +727,10 @@ try:
             ac.setBackgroundColor(kissmyrank["messages"]["id"], 0, 0, 0)
             ac.setBackgroundOpacity(kissmyrank["messages"]["id"], 0)
         else:
-            ac.setTitle(kissmyrank["link"]["id"], "link")
-            ac.drawBorder(kissmyrank["link"]["id"], 1)
-            ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
-            ac.setBackgroundOpacity(kissmyrank["link"]["id"], 0.3)
+            # ac.setTitle(kissmyrank["link"]["id"], "link")
+            # ac.drawBorder(kissmyrank["link"]["id"], 1)
+            # ac.setBackgroundColor(kissmyrank["link"]["id"], 0, 0, 0)
+            # ac.setBackgroundOpacity(kissmyrank["link"]["id"], 0.3)
 
             ac.setTitle(kissmyrank["flags"]["id"], "flags")
             ac.drawBorder(kissmyrank["flags"]["id"], 1)
@@ -1022,6 +1027,15 @@ try:
         if config["link"]["on"] != 1:
             config["link"]["on"] = 1
             configSave()
+        try:
+            ac.addOnChatMessageListener(kissmyrank["messages"]["id"], onMessage)
+        except:
+            pass
+        try:
+            ac.addOnChatMessageListener(kissmyrank["flags"]["id"], onMessage)
+        except:
+            pass
+
 
 
     # noinspection PyUnusedLocal
@@ -1043,6 +1057,7 @@ try:
         if config["flags"]["on"] != 1:
             config["flags"]["on"] = 1
             configSave()
+        # onLinkOn(*args)
 
 
     # noinspection PyUnusedLocal
@@ -1053,6 +1068,8 @@ try:
         if config["flags"]["on"] != 0:
             config["flags"]["on"] = 0
             configSave()
+        # if config["messages"]["on"] == 0 and config["flags"]["on"] == 0:
+        #     onLinkOff(*args)
 
 
     # noinspection PyUnusedLocal
@@ -1063,6 +1080,7 @@ try:
         if config["messages"]["on"] != 1:
             config["messages"]["on"] = 1
             configSave()
+        # onLinkOn(*args)
 
 
     # noinspection PyUnusedLocal
@@ -1073,6 +1091,8 @@ try:
         if config["messages"]["on"] != 0:
             config["messages"]["on"] = 0
             configSave()
+        # if config["messages"]["on"] == 0 and config["flags"]["on"] == 0:
+        #     onLinkOff(*args)
 
 
     # noinspection PyUnusedLocal
@@ -1320,6 +1340,19 @@ try:
         ac.setText(kissmyrank["settings"]["controls"]["messages_ui_input"]["id"], "Yes" if config["UI"]["show"] else "No")
         configSave()
         kissmyrank["settings"]["need_updating"].append("messages_ui")
+    
+    def onKMRConnectChange(*args):
+        global config, kissmyrank
+        current = config["link"]["on"]
+        new = not current
+        config["link"]["on"] = new
+        if config["link"]["on"]:
+            onLinkOn(*args)
+        else:
+            onLinkOff(*args)
+        ac.setText(kissmyrank["settings"]["controls"]["connect_KMR_input"]["id"], "Yes" if config["link"]["on"] else "No")
+        configSave()
+        kissmyrank["settings"]["need_updating"].append("messages_connect")
 
 
     def positionAndSizeMessages():
