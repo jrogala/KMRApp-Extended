@@ -347,7 +347,7 @@ try:
             # "minute_singular": "minute",
             # "minute_plural": "minutes",
             # "formation_lap_start": [["formation_lap"], "notify.wav", [1, 1], -1, 8],
-            "race_start": [["green_flag"], "notify.wav", [1], -1, 5],
+            "race_start": [["green_flag"], "", [1], -1, 5],
             # "not_enough_drivers_to_race": "Minimum %d drivers are required to race. Moving to qualify.",
             # "race_start_prize_broadcast": "Race direction has collected a total competition prize of %s from drivers and sponsors (winner gets %s).",
             # "race_fastest_lap_broadcast": "%s set the fastest lap of the race: %s (lap: %d, %s).",
@@ -588,20 +588,20 @@ try:
         except:
             pass
         settingsNextLine(6)
-        # addSettingsTextInput("flags_width", "Flags Width:", onFlagsWidthChange)
-        # settingsNextLine(30)
-        # addSettingsTextInput("flags_height", "Flags Height:", onFlagsHeightChange)
-        # settingsNextLine(30)
-        # addSettingsTextInput("flags_spacing", "Flags Spacing:", onFlagsSpacingChange)
-        # settingsNextLine(30)
-        # addSettingsTextInput("messages_width", "Messages Width:", onMessagesWidthChange)
-        # settingsNextLine(30)
-        # addSettingsTextInput("messages_font_size", "Messages Font Size:", onMessagesFontSizeChange)
-        # settingsNextLine(30)
-        # addSettingsTextInput("messages_line_height", "Messages Line Height:", onMessagesLineHeightChange)
-        # settingsNextLine(30)
-        # addSettingsTextInput("messages_spacing", "Messages Spacing:", onMessagesSpacingChange)
-        # settingsNextLine(30)
+        addSettingsTextInput("flags_width", "Flags Width:", onFlagsWidthChange)
+        settingsNextLine(30)
+        addSettingsTextInput("flags_height", "Flags Height:", onFlagsHeightChange)
+        settingsNextLine(30)
+        addSettingsTextInput("flags_spacing", "Flags Spacing:", onFlagsSpacingChange)
+        settingsNextLine(30)
+        addSettingsTextInput("messages_width", "Messages Width:", onMessagesWidthChange)
+        settingsNextLine(30)
+        addSettingsTextInput("messages_font_size", "Messages Font Size:", onMessagesFontSizeChange)
+        settingsNextLine(30)
+        addSettingsTextInput("messages_line_height", "Messages Line Height:", onMessagesLineHeightChange)
+        settingsNextLine(30)
+        addSettingsTextInput("messages_spacing", "Messages Spacing:", onMessagesSpacingChange)
+        settingsNextLine(30)
         addSettingsBoxInput("messages_ui", "Show UI:", onUISettingChange)
         settingsNextLine(30)
         addSettingsBoxInput("connect_KMR", "Connect KMR:", onKMRConnectChange)
